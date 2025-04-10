@@ -3,13 +3,13 @@ using System.Linq;
 using System.Text;
 using System;
 
-namespace Nogal_Git
+namespace Nofal_Git
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            
+
         }
     }
 }
