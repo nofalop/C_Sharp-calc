@@ -8,10 +8,24 @@ namespace Nofal_Git
 {
     public class Program
     {
-        Info info= new Info(); 
+        
         public static void Main(string[] args)
         {
-            
+            while (true)
+            {
+                double result = Calculations.Shape();
+                if (result > 0)
+                {
+                    Console.WriteLine($"result: {(double)result}");
+                    break;
+                }
+                else
+                {
+                    
+                    Console.Clear();
+                    Console.WriteLine("Negative Number result. Try again");
+                }
+            }
         }
     }
 }
