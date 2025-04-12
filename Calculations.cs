@@ -19,59 +19,45 @@ namespace Git_test
                 " /______|\n" +
                 "     B"
             );
-            string Choise = Console.ReadLine();
-            if (string.Equals(Choise, "a".ToLower()))
+            string Choise = Console.ReadLine().ToLower();
+            switch(Choise)
             {
-                Console.WriteLine("Enetr B: ");
+                case "A":
+                    Info.b = CheckInput("Enter B: ");
+                    Info.c = CheckInput("Enter C: ");
+                    return Math.Sqrt(Math.Pow(Info.b, 2) + Math.Pow(Info.c, 2));
                 
-                Info.b = double.TryParse(Console.ReadLine(), out double Parsed_B) ? Parsed_B : 0;
+                case "B":
+                    Info.a = CheckInput("Enter A: ");
+                    Info.c = CheckInput("Enter C: ");
+                    return Math.Sqrt(Math.Pow(Info.a, 2) - Math.Pow(Info.c, 2));
                 
-                Console.WriteLine("Enter C: ");
+                case "C":
+                    Info.b = CheckInput("Enter A: ");
+                    Info.c = CheckInput("Enter B: ");
+                    return Math.Sqrt(Math.Pow(Info.a, 2) - Math.Pow(Info.b, 2));
                 
-                Info.c = double.TryParse(Console.ReadLine() , out double Parsed_C) ? Parsed_C : 0;
-                double result = Math.Sqrt(Math.Pow(Info.b, 2) + Math.Pow(Info.c, 2));
-                return  result;
-            }
-            else if (string.Equals(Choise, "b".ToLower()))
-            {
-                Console.WriteLine("Enetr A: ");
-                
-                Info.a = double.TryParse(Console.ReadLine(), out double Parsed_B) ? Parsed_B : 0;
-                
-                Console.WriteLine("Enter C: ");
-                
-                Info.c = double.TryParse(Console.ReadLine() , out double Parsed_C) ? Parsed_C : 0;
-                double result = Math.Sqrt(Math.Pow(Info.a, 2) - Math.Pow(Info.c, 2));
-                return  result;
-            }
-            else if (string.Equals(Choise, "c".ToLower()))
-            {
-                Console.WriteLine("Enetr A: ");
-                
-                Info.a = double.TryParse(Console.ReadLine(), out double Parsed_B) ? Parsed_B : 0;
-                
-                Console.WriteLine("Enter B: ");
-                
-                Info.b = double.TryParse(Console.ReadLine() , out double Parsed_C) ? Parsed_C : 0;
-                double result = Math.Sqrt(Math.Pow(Info.a, 2) - Math.Pow(Info.b, 2));
-                return  result;
-            }
-            else
-            {
-                Console.WriteLine("Enter a valid Input");
-                return 0;
+                default:
+                    Console.WriteLine("Enter a valid Input");
+                    return 0d;
             }
             
         }
-        public bool CheckInput(ref string input)
+        private double CheckInput(string prompt)
         {
-            if(double.TryParse(input, out double _))
+            double value;
+            Console.WriteLine(prompt);
+            while (true)
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                string Input = Console.ReadLine();
+                if(double.TryParse(Input, out value) && value > 0)
+                {
+                    return value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a positive number.");
+                }
             }
         }
     }
